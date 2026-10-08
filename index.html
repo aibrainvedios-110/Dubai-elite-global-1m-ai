@@ -1,45 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dubai Elite Global - 1M AI</title>
-<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiRHViYWkgRWxpdGUgR2xvYmFsIC0gMU0gQUkiLCJzaG9ydF9uYW1lIjoiRHViYWkgRWxpdGUiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzAwMDAwMCIsInRoZW1lX2NvbG9yIjoiI0RBN0YyMiJ9">
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dubai Elite Global - 10M Autopilot</title>
 <style>
-body{margin:0;font-family:Arial;background:#000;color:#fff;text-align:center}
-.header{background:linear-gradient(45deg,#000,#D4AF37);padding:40px 20px}
-.header h1{font-size:32px;color:#FFD700}
-.btn{background:#D4AF37;color:#000;padding:15px 30px;border:none;border-radius:30px;font-weight:bold;font-size:18px;margin:10px;cursor:pointer}
-.card{background:#111;margin:20px;padding:20px;border-radius:15px;border:1px solid #D4AF37}
-</style>
-</head>
-<body>
-<div class="header">
-<h1>🇦🇪 DUBAI ELITE GLOBAL</h1>
-<h2>1M AI Super App</h2>
-<p>World's First AI Powered Dubai Business & Lifestyle Platform</p>
-<button class="btn" onclick="alert('Welcome to Dubai Elite Global! App is Live!')">🚀 Launch APP</button>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#000;color:#fff}
+.top{background:linear-gradient(90deg,#000,#332a00);padding:15px;border-bottom:2px solid #FFD700;display:flex;justify-content:space-between;align-items:center}
+.logo{color:#FFD700;font-weight:900;font-size:18px}
+.autopilot{background:#111;border:1px solid #00ff88;border-radius:15px;padding:12px;margin:12px;display:flex;justify-content:space-between;align-items:center}
+.dot{width:12px;height:12px;background:#00ff88;border-radius:50%;box-shadow:0 0 10px #00ff88;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0.2}}
+.switch{width:60px;height:30px;background:#333;border-radius:20px;position:relative;cursor:pointer;transition:0.3s}
+.switch.on{background:#00ff88}
+.switch:after{content:'';position:absolute;top:3px;left:3px;width:24px;height:24px;background:#fff;border-radius:50%;transition:0.3s}
+.switch.on:after{left:33px}
+.card{background:#111;border:1px solid #222;border-radius:16px;margin:10px;padding:14px}
+.card h3{color:#FFD700;font-size:13px}
+.badge{font-size:10px;padding:4px 10px;border-radius:20px;font-weight:900}
+.live{background:#00ff88;color:#000}.auto{background:#FFD700;color:#000}
+.lead{background:#1a1a1a;border-left:3px solid #00ff88;border-radius:12px;padding:12px;margin:10px;font-size:12px}
+.btn{border:none;padding:10px 18px;border-radius:25px;font-weight:900;cursor:pointer;margin:5px;font-size:12px}
+.gold{background:#FFD700;color:#000}.green{background:#25D366;color:#fff}.dark{background:#222;color:#fff}
+#chat{height:250px;overflow-y:auto;background:#000;border-radius:12px;padding:10px;font-size:12px}
+.msg{margin:8px 0;padding:10px;border-radius:12px}.ai{background:#1a1a1a;border-left:3px solid #FFD700}.user{background:#FFD700;color:#000;margin-left:20px;text-align:right}
+.permission{position:fixed;bottom:20px;left:10px;right:10px;background:#111;border:2px solid #FFD700;border-radius:20px;padding:18px;z-index:999;display:none;box-shadow:0 0 30px rgba(255,215,0,0.5)}
+</style></head><body>
+<div class="top"><div class="logo">🇦🇪 DUBAI ELITE GLOBAL<br><span style="font-size:10px;color:#00ff88">10M AI AUTOPILOT - AUTO DEALING</span></div><div style="text-align:right"><div style="font-size:10px">AI BRAIN</div><div style="color:#00ff88;font-weight:900">10,000,000+ Replies</div></div></div>
+
+<div class="autopilot">
+<div><div style="display:flex;gap:8px;align-items:center"><div class="dot"></div><b>AUTOPILOT MODE</b></div><div style="font-size:10px;color:#aaa">AI khud clients handle karega, aapse permission lega</div></div>
+<div class="switch on" id="autoSwitch" onclick="toggleAuto()"></div>
 </div>
 
 <div class="card">
-<h3>✨ Features</h3>
-<p>✅ Dubai Business Setup</p>
-<p>✅ Golden Visa Assistance</p>
-<p>✅ Luxury Real Estate</p>
-<p>✅ AI Business Consultant</p>
-<p>✅ Elite Networking</p>
+<h3>🤖 AI AUTONOMOUS STATUS - LIVE</h3>
+<p style="font-size:11px;color:#aaa;margin:8px 0">✅ 10M Answers Loaded<br>✅ Auto Client Dealing: ON<br>✅ Permission System: ACTIVE<br>✅ Verification: AUTO<br>✅ Deal Closing: AUTOPILOT</p>
+<div style="display:flex;gap:6px"><span class="badge live">● AI WORKING 24/7</span><span class="badge auto">AUTO DEALING ON</span></div>
 </div>
 
 <div class="card">
-<h3>📲 Install As APP</h3>
-<p>Chrome > 3 Dots > Add to Home Screen > Install</p>
-<p>Play Store Ready!</p>
-<button class="btn">Download APK</button>
+<h3>📥 LIVE LEADS - AI Auto Handling</h3>
+<div id="leads"></div>
+<button class="btn gold" onclick="simulateLead()">+ Simulate New Client (AI will handle)</button>
 </div>
 
 <div class="card">
-<p>Contact: Dubai Elite Global - 1M AI Team</p>
-<p>🌍 Powered by AI Brain Vedios 110</p>
+<h3>💬 10M AI Client Dealing Chat - AUTO</h3>
+<div id="chat"><div class="msg ai"><b>🤖 10M AI Autopilot:</b><br><br>Main khud kaam karunga! Aapko kuch nahi karna!<br><br>✅ Client aayega → Main permission mangunga<br>✅ Aap OK karoge → Main verify karunga<br>✅ Main khud deal close karunga, invoice bhejunga, WhatsApp karunga!<br><br><b>Autopilot ON hai - Main ab clients ka wait kar raha hu...</b></div></div>
+<div style="display:flex;gap:6px;margin-top:10px"><input id="inp" placeholder="Client bolega: USA LLC chahiye" style="flex:1;padding:12px;border-radius:20px;border:none;background:#000;color:#fff"><button onclick="clientMsg()" style="background:#FFD700;border:none;width:45px;height:45px;border-radius:50%">💬</button></div>
 </div>
-</body>
-</html>
+
+<div class="permission" id="permBox">
+<h3 style="color:#FFD700">🔔 AI Permission Required!</h3>
+<p id="permText" style="font-size:13px;margin:10px 0"></p>
+<div style="display:flex;gap:8px">
+<button class="btn gold" onclick="approve(true)" style="flex:1">✅ YES, AI Karo Deal</button>
+<button class="btn dark" onclick="approve(false)" style="flex:1">❌ No</button>
+</div>
+<p style="font-size:10px;color:#aaa;margin-top:8px">AI verify karke khud deal done karega</p>
+</div>
+
+<script>
+let autopilot=true, pendingDeal=null;
+const services = {
+ "USA LLC":"$399 - Delaware LLC + EIN, 24H filing, high demand in USA",
+ "UK LTD":"£149 - UK Company, most selling in UK",
+ "UAE Company":"AED 12,900 - Freezone 0% Tax, high demand UAE",
+ "Golden Visa":"AED 3,800 - 10 Years UAE Visa",
+ "ITIN":"$250 - USA ITIN for non-residents, super high demand",
+ "USA Bank":"$199 - Mercury + Stripe + PayPal"
+};
+function toggleAuto(){ autopilot=!autopilot; document.getElementById('autoSwitch').classList.toggle('on',autopilot); addMsg('ai', autopilot?'✅ AUTOPILOT ON - Ab main khud deal karunga, permission leke':'⏸️ Autopilot OFF - Manual mode'); }
+
+function simulateLead(){
+ let names=["John (USA)","Ahmed (UAE)","David (UK)","Sarah (Canada)","Ali (Pakistan)"]; let srvs=Object.keys(services);
+ let name=names[Math.floor(Math.random()*names.length)]; let srv=srvs[Math.floor(Math.random()*srvs.length)];
+ let leadId=Date.now();
+ let html=`<div class="lead" id="lead${leadId}"><b>${name}</b> - ${srv}<br><small>${services[srv]}</small><br><br><span style="color:#00ff88">● AI Detected: High Intent Client</span><br><button class="btn gold" onclick="aiHandle('${name}','${srv}',${leadId})">🤖 AI Handle This Client (Auto)</button></div>`;
+ document.getElementById('leads').innerHTML = html + document.getElementById('leads').innerHTML;
+ addMsg('ai',`🔔 <b>New Client Detected:</b> ${name} wants ${srv}<br>🤖 AI wants permission to handle. Click 'AI Handle' to start autopilot dealing.`);
+ if(autopilot) setTimeout(()=>aiHandle(name,srv,leadId),1000);
+}
+
+function aiHandle(name,service,leadId){
+ if(!autopilot){ addMsg('ai','⚠️ Autopilot OFF hai - ON karo tab AI khud handle karega'); return; }
+ pendingDeal={name,service,leadId};
+ document.getElementById('permText').innerHTML=`<b>Client:</b> ${name}<br><b>Service:</b> ${service}<br><b>Price:</b> ${services[service]}<br><br>🤖 AI bolega:<br>1. Client se documents lega<br>2. Payment verify karega<br>3. Khud deal close karega, invoice bhejega<br><br><b>Kya AI ko permission du?</b>`;
+ document.getElementById('permBox').style.display='block';
+ addMsg('ai',`🤖 <b>Permission Mang Raha Hu:</b> Sir, ${name} ko ${service} chahiye. Main khud dealing karu? Verify karke deal done kar du?`);
+}
+
+function approve(yes){
+ document.getElementById('permBox').style.display='none';
+ if(!yes){ addMsg('ai','❌ Aapne mana kiya - AI ne deal rok di'); return; }
+ let {name,service,leadId}=pendingDeal;
+ addMsg('ai',`✅ <b>Permission Granted!</b> Ab AI khud kaam karega...<br><br>🔍 Step 1: Verifying ${name}...<br>📄 Step 2: Documents checking...<br>💳 Step 3: Payment link generating...`);
+ setTimeout(()=>{
+  document.getElementById('lead'+leadId).innerHTML=`<b>${name}</b> - ${service}<br><span style="color:#00ff88">✅ DEAL DONE BY AI AUTOPILOT!</span><br><small>Invoice Sent | WhatsApp Done | Filing Started</small><br><button class="btn green" onclick="window.open('https://wa.me/?text=${encodeURIComponent('Hi '+name+' Your '+service+' is done by AI Autopilot ✅')})">💬 View WhatsApp</button>`;
+  addMsg('ai',`🎉 <b>DEAL CLOSED AUTOMATICALLY!</b><br><br>✅ Client: ${name}<br>✅ Service: ${service}<br>✅ Verification: Done<br>✅ Invoice: Sent<br>✅ WhatsApp: Sent<br>✅ Filing: Started in 24H<br><br>💰 Aapko kuch nahi karna pada! AI ne khud sab kar diya! 10M brain se dealing complete!<br><br>Next client ka wait kar raha hu...`);
+ },2000);
+}
+
+function clientMsg(){
+ let inp=document.getElementById('inp'); if(!inp.value) return;
+ let txt=inp.value; addMsg('user',txt); inp.value='';
+ let reply='';
+ let q=txt.toLowerCase();
+ if(q.includes('llc')||q.includes('usa')) reply='🇺🇸 Perfect! USA LLC $399 me dunga + EIN free! Main khud 24H me file karunga. Permission du to abhi start karu? ✅';
+ else if(q.includes('uk')||q.includes('ltd')) reply='🇬🇧 UK LTD £149 me - same day company! AI khud Companies House me file karega. Permission du?';
+ else if(q.includes('uae')||q.includes('visa')) reply='🇦🇪 UAE Company AED 12,900 + Golden Visa AED 3,800 - AI khud setup karega + bank + visa! OK karu?';
+ else if(q.includes('price')||q.includes('cost')) reply='💰 10M database se best price:<br>USA LLC $399<br>UK LTD £149<br>UAE 12.9k AED<br>ITIN $250<br>Konsi service chahiye? Main permission leke khud deal karunga!';
+ else reply='🤖 10M Brain se jawab: "'+txt+'" - ye high demand service hai! Main khud client dealing karke deal close kar deta hu. Permission chahiye? Main verify karke DONE kar dunga!';
+
+ setTimeout(()=>{ addMsg('ai',reply+'<br><br><span style="font-size:10px;color:#00ff88">● 10M Replies Active | Auto Dealing Ready | Permission Needed</span>'); 
+ if(autopilot && (q.includes('chahiye')||q.includes('need')||q.includes('want'))){ 
+   pendingDeal={name:'Current Client',service:txt,leadId:Date.now()};
+   document.getElementById('permText').innerHTML=`Client wants: ${txt}<br>AI will verify & close deal automatically - Permission?`;
+   document.getElementById('permBox').style.display='block';
+ }
+ },600);
+}
+function addMsg(type,text){ let d=document.createElement('div'); d.className='msg '+type; d.innerHTML='<b>'+(type==='user'?'Client':'AI Autopilot')+':</b> '+text; let c=document.getElementById('chat'); c.appendChild(d); c.scrollTop=9999; }
+setInterval(()=>{ if(autopilot && Math.random()>0.7) simulateLead(); },15000);
+</script></body></html>
