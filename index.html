@@ -1,3 +1,54 @@
+<script>
+const CONFIG = {
+  API_KEY: "YAHAN_APNI_PURI_REAL_API_KEY_LAGAO",
+  PRIMARY: "gemini-1.5-flash",
+  SECONDARY: "gemini-1.5-flash-latest",
+  FALLBACK: "gemini-1.5-pro"
+};
+
+async function callGemini(model, prompt) {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${CONFIG.API_KEY}`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+  });
+  const data = await res.json();
+  if (data.error) throw new Error(data.error.message);
+  if (!data.candidates) throw new Error(JSON.stringify(data));
+  return data.candidates[0].content.parts[0].text;
+}
+
+async function zaveyarAI(prompt) {
+  document.getElementById('ans').innerText = "⏳ 3 AI Soch raha hai...";
+  try {
+    console.log("Trying AI #1: 1.5-flash...");
+    const r1 = await callGemini(CONFIG.PRIMARY, prompt);
+    document.getElementById('ans').innerText = r1;
+    return r1;
+  } catch (e1) {
+    try {
+      console.warn("AI #1 fail, Trying AI #2...", e1);
+      document.getElementById('ans').innerText = "AI #1 busy, AI #2 try kar raha hu...";
+      const r2 = await callGemini(CONFIG.SECONDARY, prompt);
+      document.getElementById('ans').innerText = r2;
+      return r2;
+    } catch (e2) {
+      try {
+        console.warn("AI #2 fail, Trying AI #3...", e2);
+        document.getElementById('ans').innerText = "AI #2 busy, AI #3 final try...";
+        const r3 = await callGemini(CONFIG.FALLBACK, prompt);
+        document.getElementById('ans').innerText = r3;
+        return r3;
+      } catch (e3) {
+        document.getElementById('ans').innerText = "❌ API KEY GALAT HAI! Error: " + e3.message;
+        alert("API KEY GALAT HAI! Google AI Studio se nayi key lo!");
+        throw e3;
+      }
+    }
+  }
+}
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
